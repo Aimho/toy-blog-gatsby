@@ -1,22 +1,24 @@
 module.exports = {
     siteMetadata: {
-        title: `Gatsby Default Starter`,
-        description: `Kick off your next, ...`,
-        author: `@gatsbyjs`,
+        title: `aim home | JunHo Jo`,
+        description: `Frontend Developer@Creatable. 축구를 좋아하는 개발자입니다.`,
+        author: `JunHo Jo`,
     },
     plugins: [
-        `gatsby-plugin-typescript`,
-        `gatsby-plugin-react-helmet`,
         {
             resolve: 'gatsby-source-filesystem',
             options: {
                 name: 'posts',
-                path: `${__dirname}/posts`,
+                path: `${__dirname}/content/posts`,
             },
         },
-        `gatsby-transformer-remark`,
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `${__dirname}/content/assets`,
+                name: `assets`,
+            },
+        },
         {
             resolve: `gatsby-plugin-generate-typings`,
             options: {
@@ -29,14 +31,16 @@ module.exports = {
                 name: `gatsby-starter-default`,
                 short_name: `starter`,
                 start_url: `/`,
-                background_color: `#663399`,
-                theme_color: `#663399`,
+                background_color: `#27251F`,
+                theme_color: `#00704A`,
                 display: `minimal-ui`,
                 icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
             },
         },
-        // this (optional) plugin enables Progressive Web App + Offline functionality
-        // To learn more, visit: https://gatsby.dev/offline
-        // `gatsby-plugin-offline`,
+        `gatsby-plugin-typescript`,
+        `gatsby-plugin-react-helmet`,
+        `gatsby-transformer-remark`,
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
     ],
 };

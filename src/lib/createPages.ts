@@ -5,6 +5,8 @@ import { Query } from '../graphql-types';
 export async function createPages({ actions, graphql }: CreatePagesArgs) {
     const { createPage } = actions;
 
+    const postTemplate = path.resolve(__dirname, '../templates/PostTemplate.tsx');
+
     const { data, errors } = await graphql<Query>(`
         {
             allMarkdownRemark {
@@ -34,7 +36,7 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
                 title: node.frontmatter.title,
                 date: node.frontmatter.date,
             },
-            component: path.resolve(__dirname, '../templates/PostTemplate.tsx'),
+            component: postTemplate,
         });
     });
 }

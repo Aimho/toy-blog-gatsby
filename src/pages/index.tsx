@@ -2,45 +2,14 @@ import React from 'react';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import { graphql, useStaticQuery, Link } from 'gatsby';
-import { Query } from '../graphql-types';
-
-const LatestPostListQuery = graphql`
-    query LatestPostListQuery {
-        allMarkdownRemark(sort: { order: DESC, fields: frontmatter___date }) {
-            edges {
-                node {
-                    excerpt(truncate: true, pruneLength: 200)
-                    frontmatter {
-                        title
-                        path
-                        date(formatString: "YYYY-MM-DD HH:mm:ss")
-                    }
-                    id
-                }
-            }
-        }
-    }
-`;
+import LatestPostListQuery from '../lib/LatestPostListQuery';
 
 const IndexPage = () => {
-    const data = useStaticQuery<Query>(LatestPostListQuery);
+    console.log(LatestPostListQuery());
     return (
         <Layout>
             <SEO title="Home" />
-            <h1>최근에 작성한 게시글 목록</h1>
-            <ul>
-                {data.allMarkdownRemark.edges.map(({ node }) => (
-                    <li key={node.id}>
-                        <h2>
-                            <Link to={node.frontmatter.path}>{node.frontmatter.title}</Link>
-                        </h2>
-                        <h3>{node.frontmatter.date}</h3>
-                        <p>{node.excerpt}</p>
-                        <hr />
-                    </li>
-                ))}
-            </ul>
+            <h1>Gatsby로 제작한 블로그</h1>
         </Layout>
     );
 };
